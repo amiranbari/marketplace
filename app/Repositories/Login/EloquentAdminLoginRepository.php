@@ -26,6 +26,6 @@ class EloquentAdminLoginRepository implements LoginRepositoryInterface
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        return \App\Services\Token\Admin::make($admin->id);
+        return (new \App\Services\Token\Admin())->make($admin->id);
     }
 }
