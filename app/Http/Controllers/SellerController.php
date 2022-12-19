@@ -19,4 +19,9 @@ class SellerController extends Controller
 
         return SellerResource::collection($sellers);
     }
+
+    public function addProduct(Request $request)
+    {
+
+    }
 }
