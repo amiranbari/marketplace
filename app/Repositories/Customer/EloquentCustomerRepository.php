@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Customer;
 
-use App\Models\Role;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class EloquentRoleRepository implements RoleRepositoryInterface
+class EloquentCustomerRepository implements CustomerRepositoryInterface
 {
 
-    protected Role $model;
+    protected Customer $model;
 
-    public function __construct(Role $user)
+    public function __construct(Customer $user)
     {
         $this->model = $user;
     }
@@ -39,7 +39,7 @@ class EloquentRoleRepository implements RoleRepositoryInterface
     public function find($id)
     {
         if (empty($user = $this->model->find($id))) {
-            throw new ModelNotFoundException("Role not found");
+            throw new ModelNotFoundException("Customer not found");
         }
 
         return $user;

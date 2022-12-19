@@ -16,7 +16,6 @@ class AdminProtectedMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        dd($request->header('authorization'));
         return $next($request);
     }
 }
