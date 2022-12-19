@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('roles', RoleController::class);
 
 Route::post('login', [LoginController::class, 'login']);
+
+Route::middleware('customer-protected')->prefix('customers')->group(function () {
+    Route::get('nearby/sellers', [SellerController::class, 'nearby']);
+});
 
 

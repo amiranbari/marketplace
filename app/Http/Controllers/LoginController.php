@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserTypes;
 use App\Http\Requests\LoginRequest;
-use App\Repositories\EloquentAdminRepository;
-use App\Repositories\EloquentCustomerRepository;
-use App\Repositories\EloquentSellerRepository;
-use App\Repositories\LoginRepositoryInterface;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\Login\EloquentAdminLoginRepository;
+use App\Repositories\Login\EloquentCustomerLoginRepository;
+use App\Repositories\Login\EloquentSellerLoginRepository;
+use App\Repositories\Login\LoginRepositoryInterface;
 
 class LoginController extends Controller
 {
@@ -31,9 +30,9 @@ class LoginController extends Controller
     private function createRepository(UserTypes $userTypes)
     {
         return match ($userTypes){
-            UserTypes::Admin    => resolve(EloquentAdminRepository::class),
-            UserTypes::Customer => resolve(EloquentCustomerRepository::class),
-            UserTypes::Seller   => resolve(EloquentSellerRepository::class)
+            UserTypes::Admin    => resolve(EloquentAdminLoginRepository::class),
+            UserTypes::Customer => resolve(EloquentCustomerLoginRepository::class),
+            UserTypes::Seller   => resolve(EloquentSellerLoginRepository::class)
         };
     }
 }
