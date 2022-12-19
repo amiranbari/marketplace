@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Login;
 
-use App\Models\Admin;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\UnauthorizedException;
