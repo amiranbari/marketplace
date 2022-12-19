@@ -3,30 +3,30 @@
 namespace App\Repositories;
 
 use App\Models\Admin;
-use App\Models\Seller;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\UnauthorizedException;
 
-class EloquentSellerRepository implements LoginRepositoryInterface
+class EloquentCustomerLoginRepository implements LoginRepositoryInterface
 {
 
-    protected Seller $model;
+    protected Customer $model;
 
-    public function __construct(Seller $user)
+    public function __construct(Customer $user)
     {
         $this->model = $user;
     }
 
     public function login(string $username, string $password)
     {
-        if (empty($seller = $this->model->where('username', $username)->first())) {
+        if (empty($customer = $this->model->where('username', $username)->first())) {
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        if (!Hash::check($password, $seller->password)){
+        if (!Hash::check($password, $customer->password)){
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        return \App\Services\Token\Seller::make($seller->id);
+        return \App\Services\Token\Customer::make($customer->id);
     }
 }
