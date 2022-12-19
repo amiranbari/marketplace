@@ -25,4 +25,8 @@ Route::middleware('customer-protected')->prefix('customers')->group(function () 
     Route::get('nearby/sellers', [SellerController::class, 'nearby']);
 });
 
+Route::middleware('seller-protected')->prefix('sellers')->group(function () {
+    Route::post('products', [SellerController::class, 'addProduct']);
+});
+
 

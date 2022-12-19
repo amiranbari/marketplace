@@ -8,6 +8,8 @@ use App\Repositories\Customer\CustomerRepositoryInterface;
 use App\Repositories\Customer\EloquentCustomerRepository;
 use App\Repositories\Role\EloquentRoleRepository;
 use App\Repositories\Role\RoleRepositoryInterface;
+use App\Repositories\SellerProduct\EloquentSellerProductRepository;
+use App\Repositories\SellerProduct\SellerProductRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -32,6 +34,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             SellerRepositoryInterface::class,
             EloquentSellerRepository::class
+        );
+
+        $this->app->bind(
+            SellerProductRepositoryInterface::class,
+            EloquentSellerProductRepository::class
         );
     }
 }

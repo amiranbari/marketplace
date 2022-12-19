@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\SellerResource;
 use App\Repositories\Seller\SellerRepositoryInterface;
+use App\Repositories\SellerProduct\SellerProductRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -18,5 +19,21 @@ class SellerController extends Controller
         $sellers = $sellerRepository->getNearby($latitude, $longitude);
 
         return SellerResource::collection($sellers);
+    }
+
+    public function addProduct(Request $request, SellerProductRepositoryInterface $sellerProductRepository)
+    {
+
+        $sellerProductRepository->create([
+            'seller_id' => $request->seller->id,
+            'title'     => $request->get('title'),
+            'count'     => $request->get('count'),
+            'price'     => $request->get('price')
+        ]);
+
+        return response()->json([
+            'message'   =>  'product created successfully.'
+        ]);
+
     }
 }
