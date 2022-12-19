@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Role\StoreRequest;
-use App\Repositories\RoleRepositoryInterface;
+use App\Repositories\Role\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller

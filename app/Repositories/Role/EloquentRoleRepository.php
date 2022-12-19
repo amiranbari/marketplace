@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Role;
 
 use App\Models\Role;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
