@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Login;
 
-interface SellerRepositoryInterface
+interface LoginRepositoryInterface
 {
     public function login(string $username, string $password);
 }

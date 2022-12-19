@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Customer;
 
-interface RoleRepositoryInterface
+interface CustomerRepositoryInterface
 {
     public function all();
     public function create(array  $data);
