@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Jwt\Token;
 use App\Repositories\Customer\CustomerRepositoryInterface;
+use App\Services\Token\Customer;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CustomerProtectedMiddleware
 {
@@ -26,9 +25,7 @@ class CustomerProtectedMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = Str::remove('Bearer ', $request->header('authorization'));
-        $id = optional(Token::getPayload($token))['customer_id'];
-        if (!Token::validate($token, config('jwt.secret')) or !isset($id)) abort(403);
+        $id = (new Customer())->validate($request->header('authorization'));
         $request->customer = $this->customerRepository->find($id);
         return $next($request);
     }

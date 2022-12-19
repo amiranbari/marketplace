@@ -26,6 +26,6 @@ class EloquentCustomerLoginRepository implements LoginRepositoryInterface
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        return \App\Services\Token\Customer::make($customer->id);
+        return (new \App\Services\Token\Customer)->make($customer->id);
     }
 }

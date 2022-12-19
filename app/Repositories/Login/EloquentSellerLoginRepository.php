@@ -26,6 +26,6 @@ class EloquentSellerLoginRepository implements LoginRepositoryInterface
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        return \App\Services\Token\Seller::make($seller->id);
+        return (new \App\Services\Token\Seller())->make($seller->id);
     }
 }
