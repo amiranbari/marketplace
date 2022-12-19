@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Seller\SellerRepositoryInterface;
+use App\Repositories\Seller\EloquentSellerRepository;
 use App\Repositories\Customer\CustomerRepositoryInterface;
 use App\Repositories\Customer\EloquentCustomerRepository;
 use App\Repositories\Role\EloquentRoleRepository;
@@ -25,6 +27,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CustomerRepositoryInterface::class,
             EloquentCustomerRepository::class
+        );
+
+        $this->app->bind(
+            SellerRepositoryInterface::class,
+            EloquentSellerRepository::class
         );
     }
 }
