@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface SellerRepositoryInterface
+interface LoginRepositoryInterface
 {
     public function login(string $username, string $password);
 }

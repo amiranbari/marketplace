@@ -3,30 +3,30 @@
 namespace App\Repositories;
 
 use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\UnauthorizedException;
 
-class EloquentAdminRepository implements LoginRepositoryInterface
+class EloquentCustomerRepository implements LoginRepositoryInterface
 {
 
-    protected Admin $model;
+    protected Customer $model;
 
-    public function __construct(Admin $user)
+    public function __construct(Customer $user)
     {
         $this->model = $user;
     }
 
     public function login(string $username, string $password)
     {
-        if (empty($admin = $this->model->where('username', $username)->first())) {
+        if (empty($customer = $this->model->where('username', $username)->first())) {
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        if (!Hash::check($password, $admin->password)){
+        if (!Hash::check($password, $customer->password)){
             throw new UnauthorizedException("User or password incorrect.");
         }
 
-        return \App\Services\Token\Admin::make($admin->id);
+        return \App\Services\Token\Customer::make($customer->id);
     }
 }
