@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::apiResource('roles', RoleController::class);
+Route::middleware('admin-protected')->group(function () {
+    Route::apiResource('roles', RoleController::class);
+});
 
 Route::post('login', [LoginController::class, 'login']);
 

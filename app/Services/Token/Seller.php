@@ -4,11 +4,15 @@ namespace App\Services\Token;
 
 use App\Jwt\Token;
 
-class Seller implements TokenPayloadInterface
+class Seller  extends BaseToken
 {
-
-    public static function make($id)
+    public function make($id)
     {
-        return Token::customPayload(['seller_id'  =>  $id], config('jwt.secret'));
+        return Token::customPayload([$this->payloadId()  =>  $id], config('jwt.secret'));
+    }
+
+    public function payloadId(): string
+    {
+        return 'seller_id';
     }
 }
